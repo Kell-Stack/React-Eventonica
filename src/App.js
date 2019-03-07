@@ -5,24 +5,16 @@ import logo from './logo.svg';
 import './App.css';
 
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
+const Header = (props) => {
+  return ( 
        <Jumbotron>
-          <h1>Eventonica!</h1>
-            <p>
-              This is a simple hero unit, a simple jumbotron-style component for calling
-              extra attention to featured content or information.
-            </p>
+          <h1>{props.title}</h1>
+          <p>{props.siteDescript}</p>
       </Jumbotron>
-      </div>
-    )
-  }
+  )
 }
 
-
-class EventItem extends Component {
+class EventItem extends React.Component {
 render () {
   return (
     <li>
@@ -38,17 +30,6 @@ render () {
 }
 }
 
-class EventList extends Component {
-  render (){
-    return (
-      <ul className="list">
-        {/* 1. call API to recieve a list of events  */}
-        getEvents
-        {/* 2. for each event on that list create an event item class... then map */}
-      </ul>
-    )
-  }
-}
 
 function getEvents() {
   let xhr = new XMLHttpRequest()
@@ -57,32 +38,43 @@ function getEvents() {
       return xhr
     }
   }
-  xhr.open('GET', 'localhost:3000')
+  xhr.open('GET', 'lvh.me:3006/events/')
   xhr.send()
 
 }
 
+var events = getEvents();
+console.log("let's go ", events);
 
-render () {
-  return(
-      <div className="scoreboard">
-          <Header 
-              title="Scoreboard" 
-              totalPlayers= {this.state.players.length}
-          />                                       
+class EventList extends Component {
+  render (){
+    return (
+      <ul className="list">
+        {/* 1. call API to recieve a list of events  */}
+        {}
+        {/* 2. for each event on that list create an event item class... then map */}
+      </ul>
+    )
+  }
+}
+
+
+class App extends Component {
+  // state = {
+  //   some shit
+  // }
   
-          {/*Players list*/}
-          {this.state.players.map( player =>
-              <Player 
-                  name ={player.name}
-                  id={player.id}
-                  key={player.id.toString} 
-                  removePlayer={this.handleRemovePlayer}
-              />
-          )}
+  render() {
+    return (
+      <div className="App">
+        <Header
+          title="Eventonica!"
+          siteDescript="This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information."
+        />
       </div>
-  );
+    );
+  }
 }
-}
+
 
 export default App;
