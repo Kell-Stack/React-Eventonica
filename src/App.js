@@ -15,48 +15,57 @@ const Header = (props) => {
 }
 
 class EventItem extends React.Component {
-render () {
-  return (
-    <li>
-    <div>
-      <h3>Name</h3>
-      <address>City, State</address>
-      <span>Type of Event</span>
-    </div>
-    <button />
-    <button />  
-  </li>
-  )
-}
+
+  // state = {
+  //   events: this.getSingleEvent
+  // };
 }
 
+class EventList extends React.Component {
+  state = {
+    events: this.getEvents
+  };
 
-function getEvents() {
-  let xhr = new XMLHttpRequest()
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-      return xhr
-    }
+  var events = getEvents();
+  console.log("let's go ", events);
   }
-  xhr.open('GET', 'lvh.me:3006/events/')
-  xhr.send()
 
-}
-
-var events = getEvents();
-console.log("let's go ", events);
-
-class EventList extends Component {
+  function getEvents() {
+    let xhr = new XMLHttpRequest()
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+    //     return xhr.responseText
+    //   }
+    // }
+      xhr.open('GET', 'lvh.me:3006/events/')
+      xhr.send();
+      function sendAJAX(){
+        xhr.send();
+      }
+  }
   render (){
     return (
       <ul className="list">
-        {/* 1. call API to recieve a list of events  */}
-        {}
+        {/* 1. call API to recieve a list of events... attempted above  */}
         {/* 2. for each event on that list create an event item class... then map */}
+        {/* // info you want to get from eventful
+          // <li>
+            // <div>
+                //<h3>Name</h3>
+                //<address>City, State</address>
+                //<span>Type of Event</span>
+            // </div>
+                        // < edit button />
+                        // < del button />  
+          // </li>
+        // } */} 
       </ul>
     )
   }
 }
+
+
+
 
 
 class App extends Component {
