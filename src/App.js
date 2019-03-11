@@ -3,9 +3,6 @@ import {Jumbotron} from 'react-bootstrap';
 import {ListGroup} from 'react-bootstrap';
 import './App.css';
 import './keys.js';
-// import EventList from './EventList.js';
-
-
 const API = '/events/'
  
 
@@ -23,12 +20,10 @@ const EventList = (props) => {
       <ListGroup>
         <div className="allEvents">
           <span className="event-info">
-              <ul>
-                <button className="edit-event" onClick={ () => props.editEvent(props.id)}>EDIT</button>
-                  {props.name}
+                {/* <button className="edit-event" onClick={ () => props.editEvent(props.name)}>✍</button>
+                  {props.name} */}
                 <button className="remove-event" onClick={ () => props.removeEvent(props.id)}>✖</button>
                   {props.name}
-              </ul>
           </span>
         </ div>
       </ListGroup>
@@ -43,8 +38,6 @@ class App extends React.Component {
         events: [],
       };
     }
-
-
 
     loadEvents() {
       fetch(API, {
@@ -73,74 +66,41 @@ class App extends React.Component {
         }));
     }
 
-
-
-    // componentDidMount() {
-    //   fetch('/events')
-    //     .then(response => response.json())
-    //     .then(responseData =>{
-    //       this.setState({API: responseData});
-    //     })
-    //     .catch(error =>{
-    //       console.log('Error FETCHING and parsing data from YOUR API juheard caw caw', error);
-    //     });
-    // }
-    
-
-
-    // loadEvents() {
-    //   fetch(API)
-    //     .then(resp => {
-    //       if (!resp.ok) {
-    //         if (resp.status >= 400 && resp.status < 500) {
-    //           return resp.json().then(data => {
-    //             let err = {
-    //               errorMessage: data.message
-    //             };
-    //             throw err;
-    //           });
-    //         } else {
-    //           let err = {
-    //             errorrMessage: "Error FETCHING and parsing data from YOUR API juheard"
-    //           };
-    //           throw err;
-    //         }
-    //       }
-    //       return resp.json();
-    //     })
-    //     .then(events => this.setState({
-    //       events
-    //     }));
-    // }
-
-
     componentDidMount() {
       this.loadEvents();
     }
     
+
+    editEvent = (id) => {
+      this.setState( prevState => {
+          return {
+            events: prevState.events.filter( e => e.id !== id)
+          }
+      });
+    }
     
-    // removeEvent = (id) => {
-    //   this.setState( prevState => {
-    //       return {
-    //         events: prevState.events.filter( e => e.id !== id)
-    //       }
-    //   });
-    // }
+    removeEvent = (id) => {
+      this.setState( prevState => {
+          return {
+            events: prevState.events.filter( e => e.id !== id)
+          }
+      });
+    }
 
     render() {
         return ( 
           <div className ="App">
 
-          <Header title = "Eventonica!"
-          siteDescript = "This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information." 
+          <Header 
+          title = "Eventonica!"
+          siteDescript = "Welcome too all things Techtonica. We have local events nationwide Let's #BridgeTheTechGap together!" 
           />
 
           {this.state.events.map(events => ( 
               <EventList 
-              name = {events.name}
-              city = {events.city}
-              state = {events.state}
-              desc = {events.description}
+              name = {events.name} //{events.city} {events.state} {events.description}
+              id = {events.id}
+              removeEvent = {this.removeEvent}
               />
             ))
           }
