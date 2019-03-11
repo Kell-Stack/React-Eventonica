@@ -117,7 +117,9 @@ class App extends React.Component {
     componentDidMount() {
       this.loadEvents();
     }
-    // handleRemoveEvents = (id) => {
+    
+    
+    // removeEvent = (id) => {
     //   this.setState( prevState => {
     //       return {
     //         events: prevState.events.filter( e => e.id !== id)
