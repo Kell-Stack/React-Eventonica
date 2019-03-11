@@ -58,7 +58,7 @@ form {
   display: flex;
   background-color: #8063FA;
 }
-.
+
 input[type=text] {
   flex-grow: 1;
   border-width: 0 0 1px 0;
@@ -136,33 +136,33 @@ svg {
   overflow: hidden;
 }
 
-.player {
+.listofevents {
   display: flex;
   font-size: 1.2em;
   border-bottom: solid 2px #EEEEEE;
   letter-spacing: 2px;
 }
 
-  .player:last-of-type {
+  .listofevents:last-of-type {
     border-bottom-color: #D4CAFF;
   }
 
-  .player-name:hover .remove-player {
+  .event-info:hover .remove-event {
     visibility: visible;
   }
 
-  .player-name,
+  .event-info,
   .counter-score {
     color: #2F2366;
   }
 
-  .player-name {
+  .event-info {
     flex-grow: 1;
     line-height: 3.5em;
     padding-left: 10px;
   }
 
-  .remove-player {
+  .remove-event {
     font-size: 1.15em;
     border: none;
     outline: none;
